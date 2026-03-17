@@ -58,6 +58,8 @@ export function OpenclawNavbar() {
   const quickToWidth = useRef<((value: number) => gsap.core.Tween) | null>(null);
   const quickToHeight = useRef<((value: number) => gsap.core.Tween) | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [interactionHref, setInteractionHref] = useState<string | null>(null);
+  const highlightedHref = interactionHref ?? activeHref;
 
   const getIndicatorDuration = useCallback(() => {
     return prefersReducedMotion ? 0.12 : 0.28;
@@ -207,10 +209,14 @@ export function OpenclawNavbar() {
       <NavigationMenuList
         ref={listRef}
         className="relative rounded-[10px] border border-white/10 bg-[var(--openclaw-glass)] p-[2px] shadow-[0_1px_2px_rgba(0,0,0,0.05)]"
-        onPointerLeave={() => moveIndicator(activeHref)}
+        onPointerLeave={() => {
+          setInteractionHref(null);
+          moveIndicator(activeHref);
+        }}
         onBlurCapture={(event) => {
           const nextFocused = event.relatedTarget as Node | null;
           if (!nextFocused || !event.currentTarget.contains(nextFocused)) {
+            setInteractionHref(null);
             moveIndicator(activeHref);
           }
         }}
@@ -223,6 +229,7 @@ export function OpenclawNavbar() {
 
         {NAV_ITEMS.map((item) => {
           const isActive = activeHref === item.href;
+          const isHighlighted = highlightedHref === item.href;
 
           return (
             <NavigationMenuItem key={item.href}>
@@ -232,14 +239,20 @@ export function OpenclawNavbar() {
                   itemRefs.current[item.href] = node;
                 }}
                 aria-current={isActive ? "page" : undefined}
-                onPointerEnter={() => moveIndicator(item.href)}
-                onFocus={() => moveIndicator(item.href)}
+                onPointerEnter={() => {
+                  setInteractionHref(item.href);
+                  moveIndicator(item.href);
+                }}
+                onFocus={() => {
+                  setInteractionHref(item.href);
+                  moveIndicator(item.href);
+                }}
                 className={cn(
                   itemBaseClass,
                   "relative z-10 bg-transparent",
-                  isActive
+                  isHighlighted
                     ? "text-[var(--openclaw-text)]"
-                    : "text-[var(--openclaw-muted)] hover:text-[var(--openclaw-text)]"
+                    : "text-[var(--openclaw-muted)]"
                 )}
               >
                 {item.label}
