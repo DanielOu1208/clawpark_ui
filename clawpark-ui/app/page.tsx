@@ -6,8 +6,8 @@ import { OpenclawNavbar } from "@/components/openclaw-navbar";
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-black text-[var(--openclaw-text)] lg:h-dvh lg:overflow-y-hidden">
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 mx-auto h-16 w-full max-w-[1440px] sm:h-20">
-        <p className="pointer-events-auto absolute left-0 top-0 font-display text-[20px] leading-none text-white sm:text-[24px]">
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 mx-auto h-16 w-full  sm:h-20">
+        <p className="pointer-events-auto absolute left-4 top-4 font-display text-[20px] leading-none text-white sm:text-[24px]">
           ClawPark
         </p>
         <div className="pointer-events-auto absolute left-1/2 top-3 -translate-x-1/2 sm:top-4">
@@ -16,7 +16,7 @@ export default function Home() {
       </header>
 
       <main className="mx-auto flex min-h-screen w-full max-w-[1440px] flex-col items-center gap-[clamp(0.65rem,2.2dvh,1.8rem)] px-3 pb-8 pt-16 sm:px-6 sm:pt-20 lg:h-dvh lg:min-h-0 lg:pb-4 lg:pt-[76px]">
-        <div className="relative aspect-[868.719/567.888] w-full max-w-[869px] max-h-[clamp(240px,52dvh,568px)] overflow-hidden shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
+        <div className="relative aspect-[868.719/567.888] w-full max-w-[1100px] max-h-[clamp(300px,65dvh,800px)] overflow-hidden shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
           <Image
             src="/openclaw-hero-v2.jpg"
             alt="Chrome robotic claw agent"
@@ -37,9 +37,8 @@ export default function Home() {
               Partake in the evolution of OpenClaw agents
             </span>
           </h1>
-          <p className="mt-[clamp(0.55rem,1.65dvh,1.25rem)] max-w-[960px] font-mono text-[clamp(0.95rem,1.45vw,1.25rem)] leading-[1.3] text-white">
-            Buy, sell, and synthesize OpenClaw agents in a living ecosystem of
-            intelligence.
+          <p className="mt-[clamp(0.55rem,1.65dvh,1.25rem)] max-w-[1000px] font-mono text-[clamp(0.95rem,1.45vw,1.25rem)] leading-[1.3] text-white">
+            Buy, sell, and synthesize OpenClaw agents in a living ecosystem of intelligence.
           </p>
           <Button
             type="button"
