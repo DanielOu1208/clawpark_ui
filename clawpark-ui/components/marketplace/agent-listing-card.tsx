@@ -1,11 +1,17 @@
 import Image from "next/image"
 import {
+  Activity,
+  BarChart3,
   Bot,
   Brain,
+  CloudUpload,
   Code2,
+  FileText,
+  FlaskConical,
   Github,
   type LucideIcon,
   Rocket,
+  ShieldCheck,
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
@@ -49,6 +55,30 @@ const traitVisualMap: Record<AgentTraitKind, TraitVisual> = {
   "tool-calling": {
     icon: Bot,
     className: "border-[rgba(207,207,207,0.65)] bg-[rgba(215,215,215,0.19)]",
+  },
+  security: {
+    icon: ShieldCheck,
+    className: "border-[rgba(61,235,186,0.65)] bg-[rgba(61,235,186,0.19)]",
+  },
+  testing: {
+    icon: FlaskConical,
+    className: "border-[rgba(171,114,255,0.65)] bg-[rgba(171,114,255,0.19)]",
+  },
+  documentation: {
+    icon: FileText,
+    className: "border-[rgba(235,194,61,0.65)] bg-[rgba(235,194,61,0.19)]",
+  },
+  deployment: {
+    icon: CloudUpload,
+    className: "border-[rgba(61,191,235,0.65)] bg-[rgba(61,191,235,0.19)]",
+  },
+  "data-analysis": {
+    icon: BarChart3,
+    className: "border-[rgba(104,214,121,0.65)] bg-[rgba(104,214,121,0.19)]",
+  },
+  monitoring: {
+    icon: Activity,
+    className: "border-[rgba(245,123,169,0.65)] bg-[rgba(245,123,169,0.19)]",
   },
 }
 
