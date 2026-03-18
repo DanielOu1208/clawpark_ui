@@ -1,4 +1,8 @@
-import { OpenclawNavbar } from "@/components/openclaw-navbar";
+import Link from "next/link"
+
+import { AgentListingCard } from "@/components/marketplace/agent-listing-card"
+import { OpenclawNavbar } from "@/components/openclaw-navbar"
+import { MARKETPLACE_LISTINGS } from "@/lib/marketplace-listings"
 
 export default function MarketplacePage() {
   return (
@@ -12,14 +16,34 @@ export default function MarketplacePage() {
         </div>
       </header>
 
-      <main className="mx-auto flex min-h-screen w-full max-w-[1040px] flex-col items-center justify-center px-6 pt-24 text-center sm:pt-28">
-        <h1 className="font-display text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] text-white">
-          Marketplace
-        </h1>
-        <p className="mt-4 max-w-[720px] font-mono text-[clamp(0.95rem,1.8vw,1.1rem)] text-[var(--openclaw-muted)]">
-          Marketplace is coming soon. This stub route is live to validate active navigation and hover indicator behavior.
-        </p>
+      <main className="mx-auto flex min-h-screen w-full max-w-[1160px] flex-col px-6 pb-16 pt-24 sm:pt-28">
+        <section className="mx-auto w-full max-w-[1040px]">
+          <div className="text-center">
+            <h1 className="font-display text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] text-white">
+              Marketplace
+            </h1>
+            <p className="mx-auto mt-4 max-w-[760px] font-mono text-[clamp(0.95rem,1.8vw,1.1rem)] text-[var(--openclaw-muted)]">
+              Discover unique OpenClaw agents, compare specialized traits, and
+              insert agent-specific preview images through listing data.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-[repeat(auto-fit,minmax(226px,1fr))] justify-items-center gap-6">
+            {MARKETPLACE_LISTINGS.map((agent) => (
+              <Link
+                key={agent.slug}
+                href={`/marketplace/${agent.slug}`}
+                className="group rounded-[10px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                <AgentListingCard
+                  agent={agent}
+                  className="transition-colors duration-200 group-hover:border-white/25 group-focus-visible:border-white/35"
+                />
+              </Link>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
-  );
+  )
 }
